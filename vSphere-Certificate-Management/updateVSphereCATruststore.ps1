@@ -1,5 +1,19 @@
 . ".\common.ps1"
 
+Function addNewHostCsv {
+    Param(
+        [parameter](Mandatory=$true)[Int]$index,
+        [parameter](Mandatory=$true)[String]$DNS1,
+        [parameter](Mandatory=$false)[String]$errText
+    )
+
+    New-Object PsObject -property @{
+        'Name' = 'ESXi Host ' + $index
+        'Hostname' = $DNS1
+        'Error' = $errText
+    }
+}
+
 If ($global:DefaultVIServers.Count -ge 1) {
     Write-Host "Select connected vCenter Server to proceed"
 
@@ -106,5 +120,14 @@ If ($workingHosts -ne $null) {
     
     ForEach ($vshAddr in $workingHosts) {
         Add-VITrustedCertificate -X509Certificate $caCertObject -VMHost $hostSel -Server $viSel
+        If (-Not $?) {
+            $newCsvResultSet += addNewHostCsv -index $stepHostCsv -DNS1 $vshAddr.Name -errText $error[0]
+            Continue
+        }
     }
+    $writeNewHostCsv = 1
+}
+
+If ($writeNewHostCsv -eq 1) {
+    $newCsvResultSet | Export-Csv $arrReport
 }
