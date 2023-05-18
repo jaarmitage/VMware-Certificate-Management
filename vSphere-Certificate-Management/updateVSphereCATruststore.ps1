@@ -1,3 +1,14 @@
+<#
+
+PowerCLI script to update the certificate authority store file (CA Store)
+on a vSphere host using VMware-PowerCLI.
+
+Author: Joshua Armitage (jarmitage@vmware.com)
+
+Note: This requires PowerShell 5.1 or later and PowerCLI 12.3 or later.
+
+#>
+
 . ".\common.ps1"
 
 Function addNewHostCsv {
@@ -109,18 +120,22 @@ If ($global:DefaultVIServers.Count -ge 1) {
 
 If ($workingHosts -ne $null) {
 
-    $commonCredential = setVshCredential
-    Write-Host $commonCredential
+    # Common credential object is not needed as we are using authenticated vCenter session.
+    # $commonCredential = setVshCredential
+    # Write-Host $commonCredential
 
     $arrReport = ".\output.csv"
     $newCsvResultSet = @()
     $stepHostCsv = 0
     $writeNewHostCsv = 0
 
+    $fileOpen = Get-FileOpenDialog "C:\"
+    $caCertObject = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2($fileOpen)
     
     ForEach ($vshAddr in $workingHosts) {
-        Add-VITrustedCertificate -X509Certificate $caCertObject -VMHost $hostSel -Server $viSel
+        Add-VITrustedCertificate -X509Certificate $caCertObject -VMHost $vshAddr -Server $viSel
         If (-Not $?) {
+            $stepHostCsv++
             $newCsvResultSet += addNewHostCsv -index $stepHostCsv -DNS1 $vshAddr.Name -errText $error[0]
             Continue
         }
