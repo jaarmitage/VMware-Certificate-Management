@@ -13,9 +13,9 @@ Note: This requires PowerShell 5.1 or later and PowerCLI 12.3 or later.
 
 Function addNewHostCsv {
     Param(
-        [parameter](Mandatory=$true)[Int]$index,
-        [parameter](Mandatory=$true)[String]$DNS1,
-        [parameter](Mandatory=$false)[String]$errText
+        [parameter(Mandatory=$true)][Int]$index,
+        [parameter(Mandatory=$true)][String]$DNS1,
+        [parameter(Mandatory=$false)][String]$errText
     )
 
     New-Object PsObject -property @{
