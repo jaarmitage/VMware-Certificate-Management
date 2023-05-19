@@ -124,7 +124,7 @@ If ($workingHosts -ne $null) {
     # $commonCredential = setVshCredential
     # Write-Host $commonCredential
 
-    $arrReport = ".\output.csv"
+    $arrReport = ".\output_" + $env:username + "_" + (Get-Date).ToString('yyyymmddhhmm') + ".csv"
     $newCsvResultSet = @()
     $stepHostCsv = 0
     $writeNewHostCsv = 0
