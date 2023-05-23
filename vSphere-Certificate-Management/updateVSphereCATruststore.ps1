@@ -131,16 +131,19 @@ If ($workingHosts -ne $null) {
 
     $fileOpen = Get-FileOpenDialog "C:\"
     $caCertObject = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2($fileOpen)
-    
-    ForEach ($vshAddr in $workingHosts) {
-        Add-VITrustedCertificate -X509Certificate $caCertObject -VMHost $vshAddr -Server $viSel
-        If (-Not $?) {
+
+    If ($?) {
+        ForEach ($vshAddr in $workingHosts) {
+            Get-VITrustedCertificate -VMHost $vshAddr | Where-Object { $_.Certificate.Extenions.CertificateAuthority -ne "True" } | Remove-VITrustedCertificate
+            Add-VITrustedCertificate -X509Certificate $caCertObject -VMHost $vshAddr -Server $viSel
             $stepHostCsv++
             $newCsvResultSet += addNewHostCsv -index $stepHostCsv -DNS1 $vshAddr.Name -errText $error[0]
             Continue
         }
+        $writeNewHostCsv = 1
+    } Else {
+        Write-Host "Selected file does not appear to be a valid X509 certificate object."
     }
-    $writeNewHostCsv = 1
 }
 
 If ($writeNewHostCsv -eq 1) {
