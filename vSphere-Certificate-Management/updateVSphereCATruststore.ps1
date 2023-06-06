@@ -9,7 +9,7 @@ Note: This requires PowerShell 5.1 or later and PowerCLI 12.3 or later.
 
 #>
 
-. ".\common.ps1"
+. ".\vshCommon.ps1"
 
 Function addNewHostCsv {
     Param(
@@ -134,8 +134,8 @@ If ($workingHosts -ne $null) {
 
     If ($?) {
         ForEach ($vshAddr in $workingHosts) {
-            Get-VITrustedCertificate -VMHost $vshAddr | Where-Object { $_.Certificate.Extenions.CertificateAuthority -ne "True" } | Remove-VITrustedCertificate
-            Add-VITrustedCertificate -X509Certificate $caCertObject -VMHost $vshAddr -Server $viSel
+            Get-VITrustedCertificate -VMHost $vshAddr | Where-Object { $_.Certificate.Extensions.CertificateAuthority -ne "True" } | Remove-VITrustedCertificate -Confirm:$false
+            Add-VITrustedCertificate -X509Certificate $caCertObject -VMHost $vshAddr -Server $viSel -Confirm:$false
             $stepHostCsv++
             $newCsvResultSet += addNewHostCsv -index $stepHostCsv -DNS1 $vshAddr.Name -errText $error[0]
             Continue

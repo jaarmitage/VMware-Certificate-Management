@@ -1,4 +1,4 @@
-. ".\vshPkiErr.ps1"
+. "..\errorHandler.ps1"
 . ".\vshPkiCmdTest.ps1"
 . ".\testFileOpen.ps1"
 

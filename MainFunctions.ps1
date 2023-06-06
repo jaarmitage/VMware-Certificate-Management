@@ -2,6 +2,9 @@
 #
 # The functions contained in this file are exported.
 
+. ".\common.ps1"
+. ".\errorHandler.ps1"
+
 Function Create-VMCSR {
 
 }

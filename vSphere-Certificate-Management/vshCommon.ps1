@@ -1,14 +1,4 @@
-Function Get-FileOpenDialog([string] $initialDirectory){
-
-    [System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms") | Out-Null
-
-    $OpenFileDialog = New-Object System.Windows.Forms.OpenFileDialog
-    $OpenFileDialog.initialDirectory = $initialDirectory
-    $OpenFileDialog.filter = "Certificate Files (*.cer)| *.cer|Certificate Files (*.crt)| *.crt"
-    $OpenFileDialog.ShowDialog() |  Out-Null
-
-    return $OpenFileDialog.filename
-}
+. "..\MainFunctions.ps1"
 
 Function setVshCredential {
     $hostUser = Read-Host -Prompt 'Local ESXi User'
