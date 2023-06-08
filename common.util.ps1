@@ -1,4 +1,8 @@
-Function Get-FileOpenDialog([string] $initialDirectory){
+Function CheckCertificateValidity {
+    
+}
+
+Function FileOpenDialog([string] $initialDirectory){
 
     [System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms") | Out-Null
 
