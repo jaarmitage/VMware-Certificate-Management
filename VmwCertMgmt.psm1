@@ -1,9 +1,13 @@
 $VmwCMPublic = @(
-    Get-ChildItem -Path $PSScriptRoot\vSphere-Certificate-Management\*.pub.ps1 -ErrorAction SilentlyContinue
-    Get-ChildItem -Path $PSScriptRoot\NSX-Certificate-Management\*.pub.ps1 -ErrorAction SilentlyContinue
+    Get-ChildItem -Path $PSScriptRoot\MainFunctions.ps1 -ErrorAction SilentlyContinue
+    Get-ChildItem -Path $PSScriptRoot\vSphere-Certificate-Management\*.cmd.ps1 -ErrorAction SilentlyContinue
+    Get-ChildItem -Path $PSScriptRoot\NSX-Certificate-Management\*.cmd.ps1 -ErrorAction SilentlyContinue
 )
 $VmwCMPrivate = @(
-    Get-ChildItem -Path $PSScriptRoot\vSphere-Certificate-Management\*.priv.ps1 -ErrorAction SilentlyContinue
+    Get-ChildItem -Path $PSScriptRoot\common.ps1 -ErrorAction SilentlyContinue
+    Get-ChildItem -Path $PSScriptRoot\errorHandler.ps1 -ErrorAction SilentlyContinue
+    Get-ChildItem -Path $PSScriptRoot\vSphere-Certificate-Management\*.util.ps1 -ErrorAction SilentlyContinue
+    Get-ChildItem -Path $PSScriptRoot\NSX-Certificate-Management\*.util.ps1 -ErrorAction SilentlyContinue
 )
 
 ForEach ($import in @($VmwCMPublic + $VmwCMPrivate)) {
