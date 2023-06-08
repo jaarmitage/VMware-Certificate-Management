@@ -19,5 +19,7 @@ Function errHandler {
         809 {"Closing SSH connection to host $vsh."; Break}
         810 {"Stopping SSH service on host $vsh."; Break}
         812 {"Removing host $vsh from maintenance mode."; Break}
+        1001 {"NSX endpoint connection specification found."; Break}
+        1002 {"NSX endpoint connection specification not found."; Break}
     }
 }
