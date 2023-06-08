@@ -2,21 +2,21 @@
 #
 # The functions contained in this file are exported.
 
-. ".\common.ps1"
-. ".\errorHandler.ps1"
+. "$ParentRootPath\common.ps1"
+. "$ParentRootPath\errorHandler.ps1"
 
-Function Create-VMCSR {
-
-}
-
-Function Create-VMSelfSignedCertificate {
+Function Create-VmwCertificateRequest {
 
 }
 
-Function Get-VMCertificate {
+Function Create-VmwSelfSignedCertificate {
 
 }
 
-Function Set-VMCertificate {
+Function Get-VmwCertificate {
+
+}
+
+Function Set-VmwCertificate {
 
 }
