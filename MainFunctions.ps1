@@ -2,9 +2,6 @@
 #
 # The functions contained in this file are exported.
 
-. "$ParentRootPath\common.ps1"
-. "$ParentRootPath\errorHandler.ps1"
-
 Function Create-VmwCertificateRequest {
 
 }

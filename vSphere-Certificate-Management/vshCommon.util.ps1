@@ -1,5 +1,3 @@
-. "..\MainFunctions.ps1"
-
 Function setVshCredential {
     $hostUser = Read-Host -Prompt 'Local ESXi User'
     $hostPass = Read-Host -AsSecureString -Prompt 'Password'
