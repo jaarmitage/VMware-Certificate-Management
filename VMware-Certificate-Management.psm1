@@ -1,11 +1,7 @@
 $VmwCMPublic = @(
-    #Get-ChildItem -Path $PSScriptRoot\MainFunctions.ps1 -ErrorAction SilentlyContinue
     Get-ChildItem -Path $PSScriptRoot -Filter '*.ps1' -Exclude '*.util.ps1','*.test.ps1' -Recurse
 )
 $VmwCMPrivate = @(
-    #Get-ChildItem -Path $PSScriptRoot\common.ps1 -ErrorAction SilentlyContinue
-    #Get-ChildItem -Path $PSScriptRoot\errorHandler.ps1 -ErrorAction SilentlyContinue
-    #Get-ChildItem -Path $PSScriptRoot\vSphere-Certificate-Management\*.util.ps1 -ErrorAction SilentlyContinue
     Get-ChildItem -Path $PSScriptRoot -Filter '*.util.ps1' -Recurse
 )
 
