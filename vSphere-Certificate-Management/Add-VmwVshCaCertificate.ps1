@@ -8,9 +8,6 @@ Author: Joshua Armitage (jarmitage@vmware.com)
 Note: This requires PowerShell 5.1 or later and PowerCLI 12.3 or later.
 
 #>
-
-. ".\vshCommon.ps1"
-
 Function addNewHostCsv {
     Param(
         [parameter(Mandatory=$true)][Int]$index,
