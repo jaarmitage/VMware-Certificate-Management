@@ -1,4 +1,4 @@
-Function CheckNsxCredential {
+Function nsxCheckCredential {
     If (-Not($vmwNsxConnectSpec.Credential)) {
         Write-Host "No NSX endpoint saved."
         Return $false

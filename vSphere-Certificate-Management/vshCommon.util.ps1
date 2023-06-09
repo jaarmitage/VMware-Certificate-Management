@@ -1,4 +1,4 @@
-Function setVshCredential {
+Function vshSetCredential {
     $hostUser = Read-Host -Prompt 'Local ESXi User'
     $hostPass = Read-Host -AsSecureString -Prompt 'Password'
     #$hostRcSpecPass = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto([System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($hostPass))
