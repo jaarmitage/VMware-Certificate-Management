@@ -1,17 +1,10 @@
+# Functions defining how to interact with select methods of the VMWare NSX-T Datacenter API.
+
 Function Get-ReqNsxTrustManagementCerticicates {
     Param(
         [parameter(Position=0,Mandatory=$true)][Version]$apiVersion,
         [parameter(Mandatory=$false)][string]$node
     )
-
-    $params = @{
-        2.2 = @{
-            Uri = 'https://' + $node + '/api/v1/system/certificates';
-        };
-        2.4 = @{
-            Uri = 'https://' + $node + '/api/v1/trust-management/certificates';
-        }
-    }
 
     If (($apiVersion -gt [Version]$vmwNsxLatestVersion)) {
         Throw "Stated version is higher than maximum supported version."
@@ -23,10 +16,19 @@ Function Get-ReqNsxTrustManagementCerticicates {
         Throw "Stated version is below lowest supported version."
     }
 
+    $RSParams = @{
+        [Version]2.2 = @{
+            Uri = 'https://' + $node + '/api/v1/system/certificates'
+        };
+        [Version]2.4 = @{
+            Uri = 'https://' + $node + '/api/v1/trust-management/certificates'
+        }
+    }
+
     $request = @{
-        Uri = $params[$apiVersion]["Uri"]
-        Authentication = $vmwNsxConnectSpec.AuthMethod
-        Credential = $vmwNsxConnectSpec.Credential
+        Uri = $RSParams[$apiVersion]["Uri"];
+        Authentication = $vmwNsxConnectSpec.AuthMethod;
+        Credential = $vmwNsxConnectSpec.Credential;
         Method = "Get"
     }
 
@@ -40,15 +42,11 @@ Function Get-ReqNsxTrustManagementClusterCerticicates {
     )
 
     $request = @{
-        2.2 = @{
-            Uri = 'https://' + $node + '/api/v1/system/certificates';
-            Headers = '2.2 Testing Headers';
-            Body = '2.2 Request body test'
+        [Version]2.2 = @{
+            Uri = 'https://' + $node + '/api/v1/system/certificates'
         };
-        2.4 = @{
-            Uri = 'https://' + $node + '/api/v1/trust-management/certificates';
-            Headers = 'Testing 2.4 Headers';
-            Body = '2.4 request body test'
+        [Version]2.4 = @{
+            Uri = 'https://' + $node + '/api/v1/trust-management/certificates'
         }
     }
 
@@ -62,10 +60,12 @@ Function Get-ReqNsxTrustManagementClusterCerticicates {
         Throw "Stated version is below lowest supported version."
     }
 
-    $requestUri = Switch ($apiVersion) {
-        2.4 {$request[2.4]["Uri"]; Break}
-        2.2 {$request[2.2]["Uri"]; Break}
+    $request = @{
+        Uri = $RSParams[$apiVersion]["Uri"];
+        Authentication = $vmwNsxConnectSpec.AuthMethod;
+        Credential = $vmwNsxConnectSpec.Credential;
+        Method = "Get"
     }
 
-    Return $requestUri
+    Return $request
 }

@@ -1,3 +1,5 @@
+# Function establishing connection parameters for VMWare NSX-T Datacenter Manager Node.
+
 $vmwNsxConnectSpec = [ordered]@{
     Uri = $null
     ApiVer = $null
