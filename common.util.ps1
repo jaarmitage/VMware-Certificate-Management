@@ -2,6 +2,21 @@ Function CheckCertificateValidity {
     
 }
 
+Function CheckSupportedVersion {
+    Param(
+        [parameter(Position=0,Mandatory=$true)][Version]$Version,
+        [parameter(Position=0,Mandatory=$true)][Version]$MaxVersion,
+        [parameter(Position=0,Mandatory=$true)][Version]$MinVersion
+    )
+
+    If (($Version -gt [Version]$MaxVersion) -or ($Version -lt [Version]$MinVersion)) {
+        Return $false
+    } Elseif (($Version -ge [Version]$MinVersion) -and ($Version -le [Version]$MaxVersion)) {
+        Return $true
+    } Else {
+        Throw "Unable to parse supplied version information."
+    }
+}
 Function ConstructCSR {
     param()
 

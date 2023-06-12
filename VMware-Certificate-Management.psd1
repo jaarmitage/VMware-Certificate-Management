@@ -73,6 +73,7 @@ FunctionsToExport = @(
 	'Connect-VmwNsxNode',
 	'Disconnect-VmwNsxNode',
 	'Get-VmwCertificate',
+    'Get-VmwNsxCertificate',
 	'New-VmwCertificateRequest',
 	'New-VmwSelfSignedCertificate',
 	'Set-VmwCertificate',
