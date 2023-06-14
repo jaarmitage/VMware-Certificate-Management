@@ -32,7 +32,12 @@ Function Get-ReqNsxTrustManagementCerticicates {
         Method = "Get"
     }
 
+    $testConn = [NSXConnectSpec]::new()
+    $testConn.VMWHostName = $vmwNsxConnectSpec.Uri
+    $testConn.Something = $vmwNsxLatestVersion
+
     Return $request
+    Return $testConn
 }
 
 Function Get-ReqNsxTrustManagementClusterCerticicates {
