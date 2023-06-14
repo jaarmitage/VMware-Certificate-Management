@@ -26,7 +26,8 @@ $vmwNsxSupportedVersions = @(
 #>
 
 class NSXConnectSpec : VMWConnections {
-    [string]$Something
+    [String]$b64credential
+    [Version]$version
 }
 
 Function nsxFormatVersion {
