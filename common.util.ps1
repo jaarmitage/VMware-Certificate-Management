@@ -1,3 +1,7 @@
+class VMWCertificate {
+    [X509Certificate]$certificate
+}
+
 class VMWConnections {
     [string]$VMWHostName
 }
