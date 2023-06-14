@@ -18,7 +18,7 @@ Function Get-ReqNsxTrustManagementCerticicates {
 
     $RSParams = @{
         [Version]2.2 = @{
-            Uri = 'https://' + $node + '/api/v1/system/certificates'
+            Uri = 'https://' + $node + '/trust-management/certificates'
         };
         [Version]2.4 = @{
             Uri = 'https://' + $node + '/api/v1/trust-management/certificates'
