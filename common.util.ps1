@@ -1,9 +1,10 @@
-class VMWCertificate {
+Class VMWCertificate {
     [X509Certificate]$certificate
 }
 
-class VMWConnections {
-    [string]$VMWHostName
+Class VMWConnections {
+    [String]$VMWHostName
+    [Version]$version
 }
 
 Function CheckCertificateValidity {
