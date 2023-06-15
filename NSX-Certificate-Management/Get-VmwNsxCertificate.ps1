@@ -1,6 +1,6 @@
 Function Get-VmwNsxCertificate {
     Param(
-        [parameter(Position=0,Mandatory=$true)][Version]$Version,
+        [parameter(Mandatory=$false)][Version]$Version = $vmwNsxLatestVersion,
         [parameter(Mandatory=$false)][string]$Node
     )
 

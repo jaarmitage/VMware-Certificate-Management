@@ -2,7 +2,7 @@
 
 Function Get-ReqNsxTrustManagementCerticicates {
     Param(
-        [parameter(Position=0,Mandatory=$false)][Version]$apiVersion = $vmwNsxLatestVersion,
+        [parameter(Mandatory=$false)][Version]$apiVersion = $vmwNsxLatestVersion,
         [parameter(Mandatory=$false)][string]$node = $vmwNsxConnectSpec.Uri
     )
 
@@ -37,7 +37,7 @@ Function Get-ReqNsxTrustManagementCerticicates {
 
 Function Get-ReqNsxTrustManagementClusterCerticicates {
     Param(
-        [parameter(Position=0,Mandatory=$false)][Version]$apiVersion = $vmwNsxLatestVersion,
+        [parameter(Mandatory=$false)][Version]$apiVersion = $vmwNsxLatestVersion,
         [parameter(Mandatory=$false)][string]$node = $vmwNsxConnectSpec.Uri
     )
 
