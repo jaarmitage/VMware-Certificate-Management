@@ -28,7 +28,7 @@ Function Get-ReqNsxTrustManagementCerticicates {
     $request = @{
         Uri = $RSParams[$apiVersion]["Uri"];
         Authentication = $vmwNsxConnectSpec.AuthMethod;
-        Credential = $vmwNsxConnectSpec.Credential;
+        Credential = $vmwNsxConnectSpec.b64credential;
         Method = "Get"
     }
 

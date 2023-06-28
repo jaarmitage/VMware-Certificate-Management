@@ -3,7 +3,7 @@ Class VMWCertificate {
 }
 
 Class VMWConnections {
-    [String]$VMWHostName
+    [String]$Uri
     [Version]$version
 }
 

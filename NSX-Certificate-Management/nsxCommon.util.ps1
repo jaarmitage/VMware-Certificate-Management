@@ -27,6 +27,7 @@ $vmwNsxSupportedVersions = @(
 
 Class NSXConnectSpec : VMWConnections {
     [String]$b64credential
+    [String]$AuthMethod
 }
 
 Function nsxFormatVersion {
@@ -36,8 +37,9 @@ Function nsxFormatVersion {
 
     Write-Host "Coming soon."
 }
+
 Function nsxCheckCredential {
-    If (-Not($vmwNsxConnectSpec.Credential)) {
+    If (-Not($vmwNsxConnectSpec.b64credential) {
         Write-Host "No NSX endpoint saved."
         Return $false
     } Else {
